@@ -328,6 +328,27 @@ func TestPipelineSurfacesASourceFailureAsAnError(t *testing.T) {
 	}
 }
 
+func TestPipelineMarshalsAnEmptyListAsAList(t *testing.T) {
+	pipeline := Pipeline{
+		Evidence: &fakeClaimSource{},
+		Template: fakeTemplateSource{sections: []SectionCandidate{{Title: "Only section"}}},
+	}
+	draft, err := pipeline.Build(context.Background(), pipelineBrief())
+	if err != nil {
+		t.Fatalf("Build() error = %v", err)
+	}
+
+	encoded, err := json.Marshal(draft)
+	if err != nil {
+		t.Fatalf("marshalling the draft: %v", err)
+	}
+	for _, want := range []string{`"assumptions":[]`, `"pricingPlaceholders":[]`} {
+		if !strings.Contains(string(encoded), want) {
+			t.Fatalf("the draft does not carry %s:\n%s", want, encoded)
+		}
+	}
+}
+
 func TestPipelineFindingsComeBackSorted(t *testing.T) {
 	pipeline := baselinePipeline()
 	pipeline.Pricing = fakePricingSource{lines: []PricingLine{

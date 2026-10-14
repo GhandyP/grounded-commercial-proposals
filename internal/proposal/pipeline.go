@@ -89,15 +89,15 @@ func (p Pipeline) Build(ctx context.Context, brief Brief) (Draft, error) {
 		Brief:               brief,
 		Mode:                p.mode(),
 		Sections:            sections,
-		Claims:              claims,
-		Assumptions:         assumptions,
-		PricingPlaceholders: placeholders,
-		Evidence:            carried,
+		Claims:              nonNil(claims),
+		Assumptions:         nonNil(assumptions),
+		PricingPlaceholders: nonNil(placeholders),
+		Evidence:            nonNil(carried),
 		Conflicts:           conflicts,
 	}
 	findings = append(findings, ValidateDraft(draft)...)
 	SortFindings(findings)
-	draft.Findings = findings
+	draft.Findings = nonNil(findings)
 
 	return draft, nil
 }
@@ -245,4 +245,13 @@ func linkSections(sections []Section, claims []Claim) {
 		slices.Sort(ids)
 		sections[i].ClaimIDs = ids
 	}
+}
+
+// nonNil turns a nil slice into an empty one, so the draft always marshals a
+// list as a list and a consumer never has to read null as "none".
+func nonNil[T any](items []T) []T {
+	if items == nil {
+		return []T{}
+	}
+	return items
 }
