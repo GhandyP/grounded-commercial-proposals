@@ -161,6 +161,7 @@ const (
 	CodeClaimQuotationNotVerbatim  = "claim.quotation_not_verbatim"
 	CodeClaimForbiddenLanguage     = "claim.forbidden_language"
 	CodeClaimContradictoryEvidence = "claim.contradictory_evidence"
+	CodeClaimStatusInvalid         = "claim.status.invalid"
 	CodeSectionClaimUnlinked       = "section.claim_unlinked"
 
 	// Draft pricing.
@@ -197,6 +198,7 @@ var findingSeverity = map[string]Severity{
 	CodeClaimQuotationNotVerbatim:  SeverityWarning,
 	CodeClaimForbiddenLanguage:     SeverityError,
 	CodeClaimContradictoryEvidence: SeverityWarning,
+	CodeClaimStatusInvalid:         SeverityError,
 	CodeSectionClaimUnlinked:       SeverityError,
 
 	CodePricingLineNotCatalogued:   SeverityError,
