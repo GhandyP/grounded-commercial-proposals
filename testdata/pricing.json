@@ -1,0 +1,20 @@
+[
+  {
+    "customer": "Acme",
+    "label": "Implementation fee",
+    "currency": "USD",
+    "terms": "net 30"
+  },
+  {
+    "customer": "Acme",
+    "label": "Annual support",
+    "currency": "USD",
+    "terms": "12 months, net 30"
+  },
+  {
+    "customer": "Beta",
+    "label": "Onboarding",
+    "currency": "EUR",
+    "terms": "net 60"
+  }
+]

@@ -1,0 +1,48 @@
+[
+  {
+    "id": "C-014",
+    "customer": "Acme",
+    "kind": "approved-claim",
+    "source": "claims/acme.json",
+    "excerpt": "We migrated 27 customers\n to the new platform in 2025.",
+    "approved": true,
+    "approvedBy": "delivery@acme",
+    "approvedOn": "2026-01-02",
+    "attribute": "delivery_time",
+    "value": "six weeks",
+    "assertion": "supports"
+  },
+  {
+    "id": "C-021",
+    "customer": "Acme",
+    "kind": "case-study",
+    "source": "claims/acme.json",
+    "excerpt": "The reconciliation work dropped by half after the migration.",
+    "approved": true,
+    "approvedBy": "legal@acme",
+    "approvedOn": "2026-01-05",
+    "assertion": "supports"
+  },
+  {
+    "id": "C-030",
+    "customer": "Acme",
+    "kind": "approved-claim",
+    "source": "claims/acme-draft.json",
+    "excerpt": "A claim nobody has approved yet.",
+    "approved": false,
+    "assertion": "supports"
+  },
+  {
+    "id": "C-031",
+    "customer": "Acme",
+    "kind": "approved-claim",
+    "source": "claims/acme-conflicts.json",
+    "excerpt": "The same migration took four weeks.",
+    "approved": true,
+    "approvedBy": "delivery@acme",
+    "approvedOn": "2026-01-06",
+    "attribute": "delivery_time",
+    "value": "four weeks",
+    "assertion": "contradicts"
+  }
+]

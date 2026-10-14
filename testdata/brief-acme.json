@@ -1,0 +1,12 @@
+{
+  "customer": "Acme",
+  "needs": [
+    "cut the manual reconciliation work"
+  ],
+  "scope": [
+    "billing migration"
+  ],
+  "constraints": [
+    "must land before Q3 close"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "customer": "Acme",
+  "scope": [
+    "billing migration"
+  ],
+  "constraints": [
+    "must land before Q3 close"
+  ]
+}

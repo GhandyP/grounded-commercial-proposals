@@ -1,0 +1,13 @@
+[
+  {
+    "id": "C-900",
+    "customer": "Beta",
+    "kind": "case-study",
+    "source": "claims/beta.json",
+    "excerpt": "Beta's confidential reconciliation figures are not for other customers.",
+    "approved": true,
+    "approvedBy": "legal@beta",
+    "approvedOn": "2026-01-02",
+    "assertion": "supports"
+  }
+]
