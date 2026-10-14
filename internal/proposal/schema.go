@@ -665,8 +665,11 @@ type Outliner interface {
 	Outline(ctx context.Context, brief Brief) ([]SectionCandidate, error)
 }
 
-// Checker proposes claims with citations for a drafted outline. The returned
-// candidates carry no status: the package decides whether they are grounded.
+// Checker proposes claims with citations for a drafted outline. It is handed
+// the approved records the pipeline already scoped to the brief's customer,
+// because a model cannot copy a quotation verbatim from text it cannot see.
+// The returned candidates carry no status: the package decides whether they are
+// grounded.
 type Checker interface {
-	Check(ctx context.Context, brief Brief, sections []Section) ([]ClaimCandidate, error)
+	Check(ctx context.Context, brief Brief, sections []Section, records []Evidence) ([]ClaimCandidate, error)
 }
