@@ -273,7 +273,9 @@ type SectionCandidate struct {
 
 // ClaimCandidate is a claim as a model may propose it: text plus citations. It
 // carries no status, because no model decides whether a claim is grounded.
+// Section is the identifier of the outline section the claim belongs to.
 type ClaimCandidate struct {
+	Section   string   `json:"section,omitempty"`
 	Text      string   `json:"text"`
 	Quotation string   `json:"quotation,omitempty"`
 	Evidence  []string `json:"evidence,omitempty"`
@@ -288,9 +290,11 @@ type Section struct {
 }
 
 // Claim is a decided claim: the text as it would appear, the quotation it rests
-// on, and the status the program reached.
+// on, and the status the program reached. Section is the outline section the
+// claim belongs to, and must name a section of the same draft.
 type Claim struct {
 	ID          string      `json:"id"`
+	Section     string      `json:"section,omitempty"`
 	Text        string      `json:"text"`
 	Quotation   string      `json:"quotation,omitempty"`
 	Status      ClaimStatus `json:"status"`
