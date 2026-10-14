@@ -36,6 +36,7 @@ func GroundClaims(brief Brief, candidates []ClaimCandidate, records []Evidence) 
 
 		var reasons []string
 		rejected := false
+		foreignCitation := false
 		cited := make([]Evidence, 0, len(candidate.Evidence))
 		citedRefs := map[string]bool{}
 		foreignRefs := map[string]bool{}
@@ -56,6 +57,7 @@ func GroundClaims(brief Brief, candidates []ClaimCandidate, records []Evidence) 
 				// never grounds anything here. The reference is kept only so the
 				// author can find and remove the wrong citation.
 				rejected = true
+				foreignCitation = true
 				foreignRefs[rec.Ref()] = true
 				reasons = append(reasons, "it cites a record owned by another customer")
 				findings = append(findings, NewFinding(CodeClaimEvidenceOtherCustomer, claim.ID,
@@ -111,6 +113,14 @@ func GroundClaims(brief Brief, candidates []ClaimCandidate, records []Evidence) 
 					"claim %q cites no approved record, so it stays unresolved and visible instead of being dropped", claim.ID))
 			}
 			claim.Reason = strings.Join(dedupe(reasons), "; ")
+		}
+
+		// A claim rejected for naming another customer's record must not carry
+		// the text that was cited. Reproducing unvetted content in the draft is
+		// exactly what this rule exists to prevent, so the rejected claim keeps
+		// its own statement and its reason, and loses the citation text.
+		if foreignCitation {
+			claim.Quotation = ""
 		}
 
 		refs := make([]string, 0, len(citedRefs)+len(foreignRefs))
